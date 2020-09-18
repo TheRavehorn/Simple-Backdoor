@@ -5,7 +5,7 @@ import base64
 
 
 class Listener:
-    def __init__(self, ip="10.0.2.15", port=4444):
+    def __init__(self, ip="31.131.27.207", port=4444):
         listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         listener.bind((ip, port))
