@@ -16,10 +16,10 @@ class Listener:
 
     def reliable_send(self, data):
         json_data = json.dumps(data)
-        self.connection.send(bytes(json_data, "utf-8"))
+        self.connection.send(bytes(json_data, "cp1252"))
 
     def reliable_receive(self):
-        json_data = bytes("", "utf-8")
+        json_data = bytes("", "cp1252")
         while True:
             try:
                 json_data += self.connection.recv(1024)
