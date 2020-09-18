@@ -16,10 +16,10 @@ class Listener:
 
     def reliable_send(self, data):
         json_data = json.dumps(data)
-        self.connection.send(bytes(json_data, "utf-8"))
+        self.connection.send(bytes(json_data, "cp1251"))
 
     def reliable_receive(self):
-        json_data = bytes("", "utf-8")
+        json_data = bytes("", "cp1251")
         while True:
             try:
                 json_data += self.connection.recv(1024)
@@ -53,7 +53,7 @@ class Listener:
                 command = command.split(" ")
                 if command[0] == "upload":
                     file_content = self.read_file(command[1])
-                    command.append(file_content.decode("utf-8"))
+                    command.append(file_content.decode("cp1251"))
                 result = self.send(command)
                 if command[0] == "download":
                     result = self.write_file(command[1], result)
